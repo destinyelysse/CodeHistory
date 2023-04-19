@@ -34,11 +34,11 @@ struct Game {
         questions[currentQuestionIndex]
     }
     
-   mutating private func makeGuessForCurrentQuestion(atIndex index: Int)  {
+   mutating func makeGuessForCurrentQuestion(atIndex index: Int)  {
         guesses[currentQuestion] = index
     }
     
-    mutating private func updateGameStatus() {
+    mutating func updateGameStatus() {
         self.currentQuestionIndex += 1
         if self.currentQuestionIndex >= self.questions.count {
             self.isOver = true

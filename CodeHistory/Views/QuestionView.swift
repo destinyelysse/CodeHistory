@@ -9,6 +9,8 @@ import SwiftUI
 
 struct QuestionView: View {
     
+    @EnvironmentObject var viewModel: GameViewModel
+    
     let question: Question
     
     var body: some View {
@@ -22,16 +24,28 @@ struct QuestionView: View {
                 ForEach(0..<question.possibleAnswers.count) { answerIndex in
                     Button(action: {
                         print(question.possibleAnswers[answerIndex])
-                    }, label: {ChoiceTextView(choiceText: question.possibleAnswers[answerIndex])
-                    })
+                        viewModel.makeGuess(atIndex: answerIndex)
+                    }) {
+                        ChoiceTextView(choiceText: question.possibleAnswers[answerIndex])
+                            .background(viewModel.getUpdatedcolor(forButtonAtIndex: answerIndex))
+                    }
+                    .disabled(viewModel.guessWasMade)
+                }
+            }
+            if viewModel.guessWasMade {
+                Button(action: {
+                    viewModel.displayNextScreen()
+                }) {
+                    BottomTextView(textToShow: "Next")
                 }
             }
         }
     }
 }
 
-struct QuestionView_Previews: PreviewProvider {
-    static var previews: some View {
-        QuestionView(question: Question.allQuestions[0])
-    }
-}
+//struct QuestionView_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        QuestionView(question: Question.allQuestions[0])
+//    }
+//}
