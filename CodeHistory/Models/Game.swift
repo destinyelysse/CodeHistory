@@ -31,7 +31,8 @@ struct Game {
     }
     
     var currentQuestion: Question {
-        questions[currentQuestionIndex]
+        return (currentQuestionIndex < self.questions.count) ? questions[currentQuestionIndex] : questions[0] 
+        
     }
     
    mutating func makeGuessForCurrentQuestion(atIndex index: Int)  {

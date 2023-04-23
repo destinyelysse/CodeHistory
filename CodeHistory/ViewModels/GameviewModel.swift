@@ -27,7 +27,7 @@ class GameViewModel: ObservableObject {
     }
     
     var gameIsOver: Bool {
-        game.isOver
+        return game.isOver
     }
     
     var correctGuesses: Int {

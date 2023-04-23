@@ -46,6 +46,6 @@ struct ScoreView: View {
 
 struct ScoreView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreView(viewModel: ScoreViewModel(correctGuesses: 2, incorrectGuesses: 3))
+        ScoreView(viewModel: ScoreViewModel(correctGuesses: 2, incorrectGuesses: 1))
     }
 }
